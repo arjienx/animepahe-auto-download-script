@@ -47,4 +47,4 @@ Features:
 
 The settings will be saved locally and sync across all tabs. Feel free to modify the source code and submit bug/reports.
 
-Author: [Arjien-PHC](https://phcorner.net/members/arjien.1773652/) intended for all users.
+Author: [Arjienx](https://phcorner.net/members/arjienx.1773652/) intended for all users.
