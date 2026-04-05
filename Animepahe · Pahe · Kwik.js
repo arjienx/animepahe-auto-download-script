@@ -9,7 +9,7 @@
 // @include      https://animepahe.*/*
 // @include      https://kwik.*/*
 // @include      https://pahe.*/*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=animepahe.ru
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=animepahe.com
 // @grant        none
 // ==/UserScript==
 
