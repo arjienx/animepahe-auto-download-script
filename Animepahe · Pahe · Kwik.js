@@ -1,20 +1,14 @@
 // ==UserScript==
 // @name         Animepahe · Pahe · Kwik
 // @namespace    https://PHCorner.net/
-// @version      0.1.6
+// @version      0.1.7
 // @downloadURL  https://raw.githubusercontent.com/Ysilven/animepahe-auto-download-script/main/Animepahe%20%C2%B7%20Pahe%20%C2%B7%20Kwik.js
 // @updateURL    https://raw.githubusercontent.com/Ysilven/animepahe-auto-download-script/main/Animepahe%20%C2%B7%20Pahe%20%C2%B7%20Kwik.js
 // @description  animepahe auto script. use mouse scroll click to open multiple anime links.
-// @author       Arjien Ysilven
-// @match        https://pahe.win/*
-// @match        https://kwik.si/f/*
-// @match        https://kwik.si/d/*
-// @match        https://kwik.cx/f/*
-// @match        https://kwik.cx/d/*
-// @match        https://animepahe.si/*
-// @match        https://animepahe.ru/*
-// @match        https://animepahe.org/*
-// @match        https://animepahe.com/*
+// @author       Arjienx Ysilven
+// @include      https://animepahe.*/*
+// @include      https://kwik.*/*
+// @include      https://pahe.*/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=animepahe.ru
 // @grant        none
 // ==/UserScript==
@@ -25,33 +19,39 @@
     let settings = load_settings();
     let enable_script = settings['Enable·Script'] ? true : false;
     let url_link = window.location.href;
+
     switch (true) {
-        case /animepahe\.(si|ru|org|com)\/?$/.test(url_link):
-        case /animepahe\.(si|ru|org|com)(\/\?page=\d+)?$/.test(url_link):
+        case url_link.includes('animepahe') && /^https?:\/\/[^/]+\/?$/.test(url_link):
+        case url_link.includes('animepahe') && /^https?:\/\/[^/]+\/\?page=\d+$/.test(url_link):
             menu(1);
             break;
-        case /animepahe\.(si|ru|org|com)\/play\/.+\/.+/.test(url_link):
+
+        case url_link.includes('animepahe') && /\/play\/.+\/.+/.test(url_link):
             menu(1);
-            if(enable_script){
+            if (enable_script) {
                 script();
             } else {
                 console.log('script disabled');
             }
             break;
-        case /animepahe\.(si|ru|org|com)\/anime\/.+/.test(url_link):
+
+        case url_link.includes('animepahe') && /\/anime\/.+/.test(url_link):
             menu(2);
             break;
-        case /pahe\.win\/.+/.test(url_link):
+
+        case url_link.includes('pahe'):
             pahe_win();
             break;
-        case /kwik\.(si|cx)\/f\/.+/.test(url_link):
+
+        case url_link.includes('kwik') && /\/f\/.+/.test(url_link):
             kwik();
             break;
-        case /kwik\.(si|cx)\/d\/.+/.test(url_link): {
-            let newUrlLink = url_link.replace('/d/', '/f/');
-            window.location = newUrlLink;
+
+        case url_link.includes('kwik') && /\/d\/.+/.test(url_link): {
+            window.location = url_link.replace('/d/', '/f/');
             break;
         }
+
         default:
             console.log('no matches found for url_link');
     }
